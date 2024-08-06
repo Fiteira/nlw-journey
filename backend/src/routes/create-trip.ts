@@ -5,7 +5,6 @@ import  dayjs  from "dayjs";
 import { prisma } from "../lib/prisma";
 import { getMailClient } from "../lib/mail";
 import nodemailer from 'nodemailer';
-import { create } from "domain";
 
 export async function createTrip(app : FastifyInstance) {
     app.withTypeProvider<ZodTypeProvider>().post('/trips', {
@@ -37,7 +36,7 @@ export async function createTrip(app : FastifyInstance) {
                 destination,
                 start_at,
                 ends_at,
-                Participant : {
+                participants : {
                     createMany : {
                         data: [
                             {
